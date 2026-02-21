@@ -22,13 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-app.use(cors({
-  origin: [
-    'http://localhost:5173', // frontend
-    'http://localhost:5174', // admin panel
-  ],
-  credentials: true,
-}))
+app.use(cors());
 
 // api endpoints
 app.use('/api/user',userRouter);
