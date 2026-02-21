@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import { dropdown_icon } from '../assets/assets'
-import Title from '../components/title'
+import Title from '../components/Title'
 import ProductItem from '../components/ProductItem'
 
 const Collection = () => {
