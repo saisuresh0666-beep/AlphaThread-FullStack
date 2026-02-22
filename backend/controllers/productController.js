@@ -1,5 +1,5 @@
 const cloudinary = require("cloudinary").v2;
-
+const streamifier = require("streamifier"); 
 const ProductModel = require("../models/productModel")
 
 
@@ -19,12 +19,27 @@ const addProduct = async (req,res) =>{
             const images = [image1, image2, image3, image4]
       .filter((item) => item !== undefined )
 
-       const imageUrls = await Promise.all(
-        images.map(async (item) => {
-        let result = await cloudinary.uploader.upload(item.path,{resource_type:'image'});
-        return result.secure_url
-      })
+
+      const uploadToCloudinary = (buffer) => {
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream(
+      { resource_type: "image" },
+      (error, result) => {
+        if (error) reject(error);
+        else resolve(result);
+      }
     );
+
+    streamifier.createReadStream(buffer).pipe(stream);
+  });
+};
+
+      const imageUrls = await Promise.all(
+  images.map(async (item) => {
+    const result = await uploadToCloudinary(item.buffer);
+    return result.secure_url;
+  })
+);
 
 
     
