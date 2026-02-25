@@ -1,5 +1,5 @@
 const cloudinary = require("cloudinary").v2;
-const streamifier = require("streamifier"); 
+const streamifier = require("streamifier");
 const ProductModel = require("../models/productModel")
 
 
@@ -20,6 +20,7 @@ const addProduct = async (req,res) =>{
       .filter((item) => item !== undefined )
 
 
+
       const uploadToCloudinary = (buffer) => {
   return new Promise((resolve, reject) => {
     const stream = cloudinary.uploader.upload_stream(
@@ -33,6 +34,8 @@ const addProduct = async (req,res) =>{
     streamifier.createReadStream(buffer).pipe(stream);
   });
 };
+
+      
 
       const imageUrls = await Promise.all(
   images.map(async (item) => {
