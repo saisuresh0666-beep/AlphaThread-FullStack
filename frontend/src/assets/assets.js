@@ -31,7 +31,9 @@ import cross_icon from "./cross_icon.png";
 export { cross_icon };
 
 
+import hero_vdo from "./hero_vdo.mp4";
 
+export { hero_vdo };
 
 
 
