@@ -19,7 +19,7 @@ function Hero() {
       title: "Best Sellers",
       subtitle:
         "Discover our most loved styles, trusted by customers for quality and comfort.",
-      link: "/best-seller",
+      link: "/bestseller",
       cta: "Shop Best Sellers →",
     },
   ];
