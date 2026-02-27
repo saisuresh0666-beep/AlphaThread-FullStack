@@ -40,7 +40,7 @@ const initPay = (order) => {
     order_id: order.id,
     receipt: order.receipt,
     handler: async (response) => {
-console.log(response)
+
 try {
   const {data} = await axios.post(backendUrl+'/api/order/verifyRazorpay',response,{headers:{token}})
   if(data.success){

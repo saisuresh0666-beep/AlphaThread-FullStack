@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import CartTotal from "../components/CartTotal";
+import { toast } from "react-toastify";
 
 const Cart = () => {
  const { products, currency, cartItems, updateQuantity, navigate, backendUrl } = useContext(ShopContext);
@@ -9,6 +10,7 @@ const Cart = () => {
 
   useEffect(() => {
     const tempData = [];
+    
 
     for (const itemId in cartItems) {
       for (const size in cartItems[itemId]) {
@@ -112,7 +114,13 @@ const Cart = () => {
       
       <CartTotal />
 
-      <button onClick={()=>navigate('/place-order')} className="w-full bg-black text-white py-3 rounded-md font-semibold hover:bg-gray-800 transition">
+      <button onClick={() => {
+  if (cartData.length === 0) {
+    toast.error("Your cart is empty!");
+    return;
+  }
+  navigate('/place-order');
+}} className="w-full bg-black text-white py-3 rounded-md font-semibold hover:bg-gray-800 transition">
         CHECKOUT
       </button>
 
