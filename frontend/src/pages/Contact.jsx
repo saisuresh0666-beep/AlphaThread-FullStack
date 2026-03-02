@@ -34,7 +34,7 @@ const Contact = () => {
               <span className='font-medium text-gray-700'>Support:</span> (415) 555-0132
             </p>
             <p className='text-gray-500'>
-              <span className='font-medium text-gray-700'>Email:</span> admin@forever.com
+              <span className='font-medium text-gray-700'>Email:</span> admin@alphathread.com
             </p>
           </section>
           
