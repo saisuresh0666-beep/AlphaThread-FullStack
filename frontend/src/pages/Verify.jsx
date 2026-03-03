@@ -32,7 +32,10 @@ const orderId = searchParams.get('orderID') // Must match your success_url param
             }
         } catch (error) {
             console.log(error)
-            toast.error(error.message)
+            toast.error(error.message, {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+})
             
         }
 

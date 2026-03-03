@@ -116,7 +116,10 @@ const Cart = () => {
 
       <button onClick={() => {
   if (cartData.length === 0) {
-    toast.error("Your cart is empty!");
+    toast.error("Your cart is empty!", {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+});
     return;
   }
   navigate('/place-order');

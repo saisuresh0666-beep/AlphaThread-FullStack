@@ -27,7 +27,10 @@ if(response.data.success){
   setToken(response.data.token)
   localStorage.setItem("token",response.data.token)
 }else{
-  toast.error(response.data.message)
+  toast.error(response.data.message, {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+})
 }
 }else{
   const response = await axios.post(backendUrl+"/api/user/login/",{email,password})
@@ -35,12 +38,18 @@ if(response.data.success){
     setToken(response.data.token)
   localStorage.setItem("token",response.data.token)
   }else{
-    toast.error(response.data.message)
+    toast.error(response.data.message, {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+})
   }
 }
   }catch(err){
     console.log(err)
-    toast.error(err.message)
+    toast.error(err.message, {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+})
   }
   
 

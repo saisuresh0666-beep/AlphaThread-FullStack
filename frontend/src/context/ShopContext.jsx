@@ -19,7 +19,10 @@ const ShopContextProvider = ({ children }) => {
     // --- ADD TO CART ---
     const addToCart = async (itemId, size) => {
         if (!size) {
-            toast.error("Select product size");
+            toast.error("Select product size", {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+});
             return;
         }
 
@@ -41,10 +44,16 @@ const ShopContextProvider = ({ children }) => {
         if (token) {
         try {
             await axios.post(backendUrl + '/api/cart/add', { itemId, size }, { headers: { token } });
-            toast.success("Added to database");
+            toast.success("New Product Added", {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+});
         } catch (error) {
             console.log(error);
-            toast.error("Failed to sync with DB");
+            toast.error("Failed to sync with DB", {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+});
         }
     }
     };
@@ -60,7 +69,10 @@ const ShopContextProvider = ({ children }) => {
             try {
                 await axios.post(backendUrl + '/api/cart/update', { itemId, size, quantity }, { headers: { token } });
             } catch (error) {
-                toast.error(error.message);
+                toast.error(error.message, {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+});
             }
         }
     };
@@ -73,7 +85,10 @@ const ShopContextProvider = ({ children }) => {
                 setcartItem(response.data.cartData);
             }
         } catch (error) {
-            toast.error(error.message);
+            toast.error(error.message, {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+});
         }
     };
 

@@ -32,7 +32,10 @@ const Profile = () => {
         setUser(res.data.userData);
       }
     } catch (err) {
-      toast.error("Failed to load profile");
+      toast.error("Failed to load profile", {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+});
     } finally {
       setLoading(false);
     }
@@ -47,12 +50,18 @@ const Profile = () => {
     try {
       const res = await axios.post(backendUrl + '/api/user/profile', user, { headers: { token } });
       if (res.data.success) {
-        toast.success("Profile Updated");
+        toast.success("Profile Updated", {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+});
         setEdit(false);
         fetchUser();
       }
     } catch (err) {
-      toast.error("Update failed");
+      toast.error("Update failed", {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+});
     }
   };
 

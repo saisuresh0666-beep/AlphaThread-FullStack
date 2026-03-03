@@ -49,7 +49,10 @@ try {
   }
 } catch (err) {
   console.log(err)
-    toast.error(err.message)
+    toast.error(err.message, {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+})
   
 }
     }
@@ -92,7 +95,10 @@ const onSubmitHandler = async (event) => {
         setcartItem({})
         navigate('/orders')
       }else{
-        toast.error(response.data.message)
+        toast.error(response.data.message, {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+})
       }
       break;
 
@@ -107,7 +113,10 @@ const onSubmitHandler = async (event) => {
     const { session_url } = responseStripe.data;
     window.location.replace(session_url);
   } else {
-    toast.error(responseStripe.data.message);
+    toast.error(responseStripe.data.message, {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+});
   }
   break;
 
@@ -131,7 +140,10 @@ const onSubmitHandler = async (event) => {
   }catch(err){
 
     console.log(err)
-    toast.error(err.message)
+    toast.error(err.message, {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+})
   }
 
 }
