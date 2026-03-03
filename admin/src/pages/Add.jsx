@@ -124,7 +124,7 @@ e
 
         <div>
           <p className="font-semibold text-gray-700 text-sm mb-1">Product Price</p>
-          <input onChange={(e)=>setPrice(e.target.value)} value={price} type='number' placeholder='$0.00' required
+          <input onChange={(e)=>setPrice(e.target.value)} value={price} type='number' placeholder='₹0.00' required
             className="w-full border rounded-md px-3 py-1.5 text-sm focus:ring-1 focus:ring-gray-400 outline-none"/>
         </div>
       </div>
