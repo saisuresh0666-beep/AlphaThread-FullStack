@@ -130,15 +130,15 @@ const ShopContextProvider = ({ children }) => {
                 setProducts(response.data.product, {
   className: "custom-toast",
   bodyClassName: "custom-toast-body",
-}););
+});
             } else {
-                toast.error(response.data.message, {
-  className: "custom-toast",
-  bodyClassName: "custom-toast-body",
-}););
+                toast.error(response.data.message);
             }
         } catch (err) {
-            toast.error(err.message);
+            toast.error(err.message, {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+});
         }
     };
 
