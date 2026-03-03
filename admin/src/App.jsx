@@ -11,7 +11,7 @@ import Login from './components/Login'
 import { useEffect } from 'react'
 
 export const backEndUrl = import.meta.env.VITE_BACKEND_URL
-export const currency = '$'
+export const currency = '₹'
 const App = () => {
   const [token,setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):'');
 
