@@ -22,7 +22,7 @@ import dropdown_icon from "./dropdown_icon.png";
 
 export { dropdown_icon };
 
-import hero_img from "./hero_img.jpg";
+import hero_img from "./hero_img.webp";
 
 export { hero_img };
 
@@ -46,7 +46,7 @@ import Razorpay_Logo from "./Razorpay_Logo.png";
 export { Razorpay_Logo };
 
 
-import about_img from "./about_img.jpg";
+import about_img from "./about_img.webp";
 
 export { about_img };
 

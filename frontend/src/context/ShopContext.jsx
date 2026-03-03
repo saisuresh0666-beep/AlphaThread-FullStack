@@ -127,9 +127,15 @@ const ShopContextProvider = ({ children }) => {
         try {
             const response = await axios.get(backendUrl + "/api/product/list");
             if (response.data.success) {
-                setProducts(response.data.product);
+                setProducts(response.data.product, {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+}););
             } else {
-                toast.error(response.data.message);
+                toast.error(response.data.message, {
+  className: "custom-toast",
+  bodyClassName: "custom-toast-body",
+}););
             }
         } catch (err) {
             toast.error(err.message);
