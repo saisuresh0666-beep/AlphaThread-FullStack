@@ -30,36 +30,55 @@ const onChangeHandler = (event) => {
 }
 
 const initPay = (order) => {
-  
-    const options = {
-    key: import.meta.env.VITE_RAZORPAY_KEY_ID, // Razorpay Key
+
+  const options = {
+    key: import.meta.env.VITE_RAZORPAY_KEY_ID,
     amount: order.amount,
     currency: order.currency,
     name: "Order Payment",
     description: "Order Payment",
     order_id: order.id,
-    receipt: order.receipt,
-    handler: async (response) => {
 
-try {
-  const {data} = await axios.post(backendUrl+'/api/order/verifyRazorpay',response,{headers:{token}})
-  if(data.success){
-    navigate("/orders")
-    setcartItem({})
-  }
-} catch (err) {
-  console.log(err)
-    toast.error(err.message, {
-  className: "custom-toast",
-  bodyClassName: "custom-toast-body",
-})
-  
-}
+    handler: async (response) => {
+      try {
+
+        const { data } = await axios.post(
+          backendUrl + "/api/order/verifyRazorpay",
+          response,
+          { headers: { token } }
+        );
+
+        if (data.success) {
+          navigate("/orders");
+          setcartItem({});
+        }
+
+      } catch (err) {
+        console.log(err);
+
+        toast.error("Payment verification failed", {
+          className: "custom-toast",
+          bodyClassName: "custom-toast-body",
+        });
+      }
     }
-  }
-  const rzp = new window.Razorpay(options)
-  rzp.open()
-}
+  };
+
+  const rzp = new window.Razorpay(options);
+
+  // 🔴 Handle payment cancel / failure
+  rzp.on("payment.failed", function (response) {
+
+    toast.error("Payment cancelled or failed", {
+      className: "custom-toast",
+      bodyClassName: "custom-toast-body",
+    });
+
+    console.log(response.error);
+  });
+
+  rzp.open();
+};
 
 const onSubmitHandler = async (event) => {
   event.preventDefault()
