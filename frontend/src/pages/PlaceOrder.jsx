@@ -30,10 +30,6 @@ const onChangeHandler = (event) => {
 }
 
 const initPay = (order) => {
-    if (!window.Razorpay) {
-    toast.error("Razorpay SDK failed to load. Please refresh.");
-    return;
-  }
   
     const options = {
     key: import.meta.env.VITE_RAZORPAY_KEY_ID, // Razorpay Key
@@ -62,10 +58,6 @@ try {
     }
   }
   const rzp = new window.Razorpay(options)
-   rzp.on("payment.failed", function (response) {
-    console.log(response.error);
-  });
-  
   rzp.open()
 }
 
