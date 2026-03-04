@@ -65,7 +65,7 @@ try {
    rzp.on("payment.failed", function (response) {
     console.log(response.error);
   });
-  
+  document.body.click()
   rzp.open()
 }
 
