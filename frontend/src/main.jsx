@@ -6,11 +6,11 @@ import "./index.css";
 import ShopContextProvider from "./context/ShopContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+
     <BrowserRouter>
     <ShopContextProvider>
       <App />
       </ShopContextProvider>
     </BrowserRouter>
-  </React.StrictMode>
+
 );

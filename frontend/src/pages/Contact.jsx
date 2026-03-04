@@ -42,7 +42,6 @@ const Contact = () => {
         </div>
       </div>
 
-      <NewsLetterBox />
     </div>
   )
 }

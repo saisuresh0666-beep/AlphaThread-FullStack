@@ -5,7 +5,7 @@ const NewsLetterBox = () => {
   // Prevent page reload when form is submitted
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log("Email submitted");
+    
   }
 
   return (

@@ -52,8 +52,6 @@ const About = () => {
           <p className='text-gray-600 group-hover:text-gray-300'>Our team of dedicated professionals is here to assist you every step of the way, ensuring satisfaction.</p>
         </div>
       </div>
-
-      <NewsLetterBox />
     </div>
   )
 }

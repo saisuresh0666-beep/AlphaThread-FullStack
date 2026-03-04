@@ -50,7 +50,7 @@ import about_img from "./about_img.webp";
 
 export { about_img };
 
-import contact_img from "./contact_img.jpg";
+import contact_img from "./contact_img.webp";
 
 export { contact_img };
 
