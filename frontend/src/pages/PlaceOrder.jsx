@@ -58,6 +58,10 @@ try {
     }
   }
   const rzp = new window.Razorpay(options)
+  if (!window.Razorpay) {
+  alert("Razorpay SDK failed to load")
+  return
+}
   rzp.open()
 }
 
