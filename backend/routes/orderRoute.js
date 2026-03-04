@@ -3,10 +3,10 @@ const express = require("express")
 const {
   placeOrder,
     placeOrderRazorpay,
-    placeOrderStripe,
+    
     allOrders,
     userOrders,
-    updateStatus,verifyStripe,verifyRazorpay
+    updateStatus,verifyRazorpay
 } = require("../controllers/orderController");
 const adminAuth = require("../middleware/adminAuth");
 const authUser = require("../middleware/auth");
@@ -20,7 +20,7 @@ orderRouter.post('/status',adminAuth,updateStatus)
 
 // Payment Feature
 orderRouter.post('/place',authUser,placeOrder)
-orderRouter.post('/stripe',authUser,placeOrderStripe)
+// orderRouter.post('/stripe',authUser,placeOrderStripe)
 orderRouter.post('/razorpay',authUser,placeOrderRazorpay)
 
 // UserOrder
@@ -30,7 +30,7 @@ orderRouter.post('/userorder',authUser,userOrders)
 
 // verify payment
 
-orderRouter.post('/verifyStripe',authUser,verifyStripe)
+// orderRouter.post('/verifyStripe',authUser,verifyStripe)
 orderRouter.post('/verifyRazorpay',authUser,verifyRazorpay)
 
 
