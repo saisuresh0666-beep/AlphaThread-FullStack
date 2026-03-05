@@ -173,7 +173,7 @@ res.json({success:true,message:"Order Placed"});
 
 
 
-// Placing order using razor pay method
+// Placing order using razorpay method
 
 const placeOrderRazorpay = async (req,res) => {
 
