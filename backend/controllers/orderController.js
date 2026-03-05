@@ -182,9 +182,9 @@ const placeOrderRazorpay = async (req,res) => {
     const { amount } = req.body;
 
     const options = {
-      amount: amount * 100,
+      amount: amount * 100, // convert to paise
       currency: currency.toUpperCase(),
-      receipt: "receipt_" + Date.now()
+      receipt: Date.now().toString()
     }
 
     const order = await razorpayInstance.orders.create(options)
@@ -218,31 +218,25 @@ const verifyRazorpay = async (req,res) => {
 
     if(orderInfo.status === "paid"){
 
-      const orderData = {
+      const newOrder = new orderModel({
         userId,
         items,
-        address,
         amount,
-        PaymentMethod:'Razorpay',
+        address,
+        PaymentMethod:"Razorpay",
         payment:true,
         date:Date.now()
-      }
+      })
 
-      await orderModel.create(orderData)
+      await newOrder.save()
 
       await userModel.findByIdAndUpdate(userId,{cartData:{}})
 
-      res.json({
-        success:true,
-        message:"Payment Successful"
-      })
+      res.json({ success:true })
 
-    }else{
+    } else {
 
-      res.json({
-        success:false,
-        message:"Payment Failed"
-      })
+      res.json({ success:false, message:"Payment Failed" })
 
     }
 
