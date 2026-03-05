@@ -40,7 +40,7 @@ const Footer = () => {
         {/* Contact */}
         <div>
           <h3 className="font-semibold text-gray-800 mb-3">Contact</h3>
-          <p className="text-gray-600 text-sm">support@alphathread.com</p>
+          <p className="text-gray-600 text-sm">alphathread@gmail.com</p>
           <p className="text-gray-600 text-sm">+91 98765 43210</p>
         </div>
 
