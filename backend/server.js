@@ -75,18 +75,11 @@ app.get('/', (req, res) => {
   res.send("api is working");
 });
 
-async function startServer() {
-  try {
-    await DBconnect();           // wait for DB
-    await connectCloudinary();   // connect cloudinary
+DBconnect();
+connectCloudinary();
 
-    app.listen(port, () => {
-      console.log(`Server started on port ${port}`);
-    });
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
+});
 
-  } catch (error) {
-    console.log("Server start failed:", error);
-  }
-}
-
-startServer();
+module.exports = app;
