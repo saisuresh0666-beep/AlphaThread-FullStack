@@ -18,7 +18,7 @@ const addWishlist = async (req,res)=>{
     res.json({ status: "added" });
 
   } catch (err) {
-    res.status(500).json(err);
+    res.json(err);
   }
 };
 
@@ -32,7 +32,7 @@ const getWishlist = async (req, res) => {
       .find({ userId })
       .populate("productId");
 
-    console.log("WISHLIST:", wishlist);
+    
 
     res.json({
       success: true,
@@ -41,7 +41,7 @@ const getWishlist = async (req, res) => {
 
   } catch (err) {
     console.log(err);
-    res.status(500).json({
+    res.json({
       success: false,
       message: "Error fetching wishlist"
     });
