@@ -14,7 +14,6 @@ const ShopContextProvider = ({ children }) => {
     const [cartItems, setcartItem] = useState({});
     const [products, setProducts] = useState([]);
     const [token, setToken] = useState('');
-    const [wishlist, setWishlist] = useState([]);
     const navigate = useNavigate(); // Standardized naming to 'navigate'
 
     // --- ADD TO CART ---
@@ -155,30 +154,12 @@ const ShopContextProvider = ({ children }) => {
         }
     }, []);
 
-const fetchWishlist = async () => {
-    try {
-      const res = await axios.get(
-        backendUrl + "/api/wishlist/get",
-        { headers: { token } }
-      );
-
-      setWishlist(res.data.wishlist || []);
-      
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const getWishlistCount = () => {
-  return wishlist.length;
-};
-
     const value = {
         products, currency, delivery_fee,
         search, setSearch, showSearch, setshowSearch,
         cartItems, addToCart, updateQuantity,
         getCartCount, getCartAmount,getFinalAmount,
-        navigate, backendUrl, setToken, token,setcartItem,wishlist, setWishlist,fetchWishlist,getWishlistCount
+        navigate, backendUrl, setToken, token,setcartItem
     };
 
     return (

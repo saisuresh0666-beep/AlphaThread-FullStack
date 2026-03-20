@@ -4,13 +4,13 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./index.css";
 import ShopContextProvider from "./context/ShopContext";
-import { SpeedInsights } from "@vercel/speed-insights/react";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
+
     <BrowserRouter>
-      <ShopContextProvider>
-        <App />
-        <SpeedInsights />
+    <ShopContextProvider>
+      <App />
       </ShopContextProvider>
     </BrowserRouter>
+
 );

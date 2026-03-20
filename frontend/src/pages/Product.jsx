@@ -8,7 +8,6 @@ const Product = () => {
   const { productId } = useParams();
   const { products, currency, token, addToCart, backendUrl } = useContext(ShopContext);
 
-const [isWishlisted, setIsWishlisted] = useState(false);
   const [productData, setProductData] = useState(false);
   const [images, setImage] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
@@ -23,22 +22,6 @@ const [isWishlisted, setIsWishlisted] = useState(false);
     });
   };
 
-  const checkWishlistStatus = async () => {
-    if (!token) return;
-    try {
-      const res = await axios.get(backendUrl + "/api/wishlist/get", {
-        headers: { token }
-      });
-      const wishlistItems = res.data.wishlist || [];
-      const isPresent = wishlistItems.some(item => 
-        item.productId?._id === productId || item.productId === productId
-      );
-      setIsWishlisted(isPresent);
-    } catch(err) {
-      console.log(err);
-    }
-  };
-
  useEffect(() => {
   if (products.length > 0) {
     fetchProductData();
@@ -50,30 +33,7 @@ useEffect(() => {
     top: 0,
     behavior: "smooth" // remove smooth if you want instant jump
   });
-  checkWishlistStatus();
 }, [productId, token]);
-
-
-
-
-const toggleWishlist = async (productId) => {
-  try{
-  const res = await axios.post(backendUrl+"/api/wishlist/add", {
-    productId
-  },{headers:{token}});
-
-  
-if (res.data.status === "added") {
-  setIsWishlisted(true);
-} else {
-  setIsWishlisted(false);
-}
-
-}catch(err)
-{
-console.log(err)
-}
-};
 
 
 
@@ -171,24 +131,6 @@ console.log(err)
                transition"
   >
     🛒 Add to Cart
-  </button>
-
-  {/* Wishlist */}
-  <button
-    onClick={() => toggleWishlist(productData._id)}
-    className={`flex-1 flex items-center justify-center gap-2 
-                px-6 py-3 
-                rounded-full 
-                text-sm font-medium 
-                transition duration-200
-                active:scale-95
-                ${
-                  isWishlisted
-                    ? "bg-pink-500 text-white shadow-md"
-                    : "border border-gray-300 text-gray-700 hover:bg-gray-100"
-                }`}
-  >
-    {isWishlisted ? "💖 Remove from Wishlist" : "🤍 Add to Wishlist"}
   </button>
 
 </div>
