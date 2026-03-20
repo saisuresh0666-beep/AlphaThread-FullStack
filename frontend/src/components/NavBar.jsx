@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { logo,search_icon,profile_icon,cart_icon,menu_icon,dropdown_icon } from "../assets/assets";
+import { logo,search_icon,profile_icon,cart_icon,menu_icon,dropdown_icon, wishlist_icon } from "../assets/assets";
 import { NavLink,Link } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ const NavBar = () => {
   const navigate = useNavigate();
     const [visible,setVisible] =useState(false)
 
-    const { setshowSearch, getCartCount, token, setToken, setCartitem } = useContext(ShopContext)
+    const { setshowSearch, getCartCount, token, setToken, setCartitem,getWishlistCount } = useContext(ShopContext)
 
 
     const logout = ()=>{
@@ -94,6 +94,12 @@ const NavBar = () => {
       <Link to='/cart' className="relative">
       <img src={cart_icon}  className=" min w-5" alt=""/>
       <p className="absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white rounded-full text-[8px]">{getCartCount()}</p>
+
+      </Link>
+      <Link to='/wishlist' className="relative">
+      <img src={wishlist_icon}  className=" min w-5" alt=""/>
+      <p className="absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white rounded-full text-[8px]">{getWishlistCount()}</p>
+      
 
       </Link>
       <img onClick={()=>setVisible(true)} src={menu_icon} className="w-5 cursor-pointer sm:hidden" alt="menu"/>

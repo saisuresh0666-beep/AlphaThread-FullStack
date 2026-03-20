@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext'
 import RelatedProducts from '../components/RelatedProducts';
-
+import axios from "axios";
 const Product = () => {
 
   const { productId } = useParams();
-  const { products, currency, addToCart, backendUrl } = useContext(ShopContext);
+  const { products, currency, token, addToCart, backendUrl } = useContext(ShopContext);
 
-
+const [isWishlisted, setIsWishlisted] = useState(false);
   const [productData, setProductData] = useState(false);
   const [images, setImage] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
@@ -23,6 +23,22 @@ const Product = () => {
     });
   };
 
+  const checkWishlistStatus = async () => {
+    if (!token) return;
+    try {
+      const res = await axios.get(backendUrl + "/api/wishlist/get", {
+        headers: { token }
+      });
+      const wishlistItems = res.data.wishlist || [];
+      const isPresent = wishlistItems.some(item => 
+        item.productId?._id === productId || item.productId === productId
+      );
+      setIsWishlisted(isPresent);
+    } catch(err) {
+      console.log(err);
+    }
+  };
+
  useEffect(() => {
   if (products.length > 0) {
     fetchProductData();
@@ -34,7 +50,32 @@ useEffect(() => {
     top: 0,
     behavior: "smooth" // remove smooth if you want instant jump
   });
-}, [productId]);
+  checkWishlistStatus();
+}, [productId, token]);
+
+
+
+
+const toggleWishlist = async (productId) => {
+  try{
+  const res = await axios.post(backendUrl+"/api/wishlist/add", {
+    productId
+  },{headers:{token}});
+
+  
+if (res.data.status === "added") {
+  setIsWishlisted(true);
+} else {
+  setIsWishlisted(false);
+}
+
+}catch(err)
+{
+console.log(err)
+}
+};
+
+
 
 
 
@@ -115,15 +156,42 @@ useEffect(() => {
       </div>
 
       {/* Add to Cart */}
-      <div className="mt-10">
-        <button
-          onClick={() => addToCart(productData._id, selectedSize)}
-          className="w-full md:w-auto bg-black text-white px-10 py-3
-                     text-sm tracking-wide hover:opacity-90 transition"
-        >
-          Add to Cart
-        </button>
-      </div>
+     <div className="mt-10 flex flex-col md:flex-row gap-4">
+  
+  {/* Add to Cart */}
+  <button
+    onClick={() => addToCart(productData._id, selectedSize)}
+    className="flex-1 flex items-center justify-center
+               bg-black text-white 
+               px-6 py-3
+               text-sm tracking-wide 
+               rounded-full
+               hover:opacity-90 
+               active:scale-95
+               transition"
+  >
+    🛒 Add to Cart
+  </button>
+
+  {/* Wishlist */}
+  <button
+    onClick={() => toggleWishlist(productData._id)}
+    className={`flex-1 flex items-center justify-center gap-2 
+                px-6 py-3 
+                rounded-full 
+                text-sm font-medium 
+                transition duration-200
+                active:scale-95
+                ${
+                  isWishlisted
+                    ? "bg-pink-500 text-white shadow-md"
+                    : "border border-gray-300 text-gray-700 hover:bg-gray-100"
+                }`}
+  >
+    {isWishlisted ? "💖 Remove from Wishlist" : "🤍 Add to Wishlist"}
+  </button>
+
+</div>
 
       {/* Info */}
       <div className="mt-8 text-xs text-gray-400 space-y-1">

@@ -17,6 +17,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Verify from './pages/Verify'
 import Profile from './pages/Profile'
 import BestSeller from './components/BestSeller'
+import Wishlist from './components/WishList'
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
  <Route path='/verify' element={<Verify/>}/>
  <Route path='/profile' element={<Profile/>}/>
  <Route path='/bestseller' element={<BestSeller/>}/>
+ <Route path='/wishlist' element={<Wishlist/>}/>
       </Routes>
       <Footer/>
     </div>

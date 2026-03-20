@@ -52,6 +52,7 @@ const userRouter = require("./routes/userRoute.js");
 const ProductRoute = require("./routes/productRoute.js");
 const cartRoute = require("./routes/cartRoute.js");
 const orderRouter = require("./routes/orderRoute.js");
+const wishlistRouter = require("./routes/wishlistRoute.js");
 
 dotenv.config();
 
@@ -68,6 +69,7 @@ app.use('/api/user', userRouter);
 app.use('/api/product', ProductRoute);
 app.use('/api/cart', cartRoute);
 app.use('/api/order', orderRouter);
+app.use('/api/wishlist',wishlistRouter)
 
 app.get('/', (req, res) => {
   res.send("api is working");

@@ -54,6 +54,10 @@ import contact_img from "./contact_img.webp";
 
 export { contact_img };
 
+import wishlist_icon from "./wishlist_icon.png";
+
+export { wishlist_icon };
+
 
 
 
