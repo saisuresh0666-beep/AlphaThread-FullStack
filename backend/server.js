@@ -62,14 +62,7 @@ const port = process.env.PORT || 3000;
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const cors = require("cors");
-
-app.use(
-  cors({
-    origin: "https://alpha-thread-frontend.vercel.app",
-    credentials: true,
-  })
-);
+app.use(cors());
 
 // routes
 app.use('/api/user', userRouter);
