@@ -77,11 +77,9 @@ app.get('/', (req, res) => {
 
 DBconnect();
 connectCloudinary();
-
 if (process.env.NODE_ENV !== "production") {
-  app.listen(port, () => {
-    console.log(`Server started on port ${port}`);
-  });
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
+});
 }
-
 module.exports = app;
