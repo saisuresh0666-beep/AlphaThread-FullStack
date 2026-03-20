@@ -59,7 +59,7 @@ res.json({success:true, message:"Cart Updated"})
 // get user cart data
 const getUserCart = async  (req,res) => {
     try{
-        const{userId} = req.body
+        const{userId} = req.userId
         const userData = await userModel.findById(userId)
         let cartData = await userData.cartData;
 res.json({success:true,cartData})
