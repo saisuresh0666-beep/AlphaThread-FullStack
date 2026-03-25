@@ -6,7 +6,7 @@ import axios from "axios";
 const Product = () => {
 
   const { productId } = useParams();
-  const { products, currency, token, addToCart, backendUrl } = useContext(ShopContext);
+  const { products, currency, token, addToCart } = useContext(ShopContext);
 
   const [productData, setProductData] = useState(false);
   const [images, setImage] = useState("");

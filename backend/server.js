@@ -53,6 +53,7 @@ const ProductRoute = require("./routes/productRoute.js");
 const cartRoute = require("./routes/cartRoute.js");
 const orderRouter = require("./routes/orderRoute.js");
 
+
 dotenv.config();
 
 const app = express();
@@ -68,6 +69,7 @@ app.use('/api/user', userRouter);
 app.use('/api/product', ProductRoute);
 app.use('/api/cart', cartRoute);
 app.use('/api/order', orderRouter);
+
 
 app.get('/', (req, res) => {
   res.send("api is working");
