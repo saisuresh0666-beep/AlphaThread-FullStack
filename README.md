@@ -1,4 +1,4 @@
-# E-Commerce Store
+# ALPHATHREAD
 
 A full-stack e-commerce application with a customer storefront, an admin dashboard, and a REST API. Customers can browse products, manage a size-based cart, place orders, pay with Razorpay, and view their order history. Administrators can sign in to add, remove, and manage products and orders.
 
